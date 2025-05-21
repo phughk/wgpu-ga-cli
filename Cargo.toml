@@ -1,0 +1,11 @@
+[package]
+name = "wgpu-ga-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.5.38", features = ["derive"] }
+pest = "2.8.0"
+pest_derive = { version = "2.8.0", features = ["grammar-extras"] }
+tokio = { version = "1.45.0", features = ["full", "macros", "rt", "sync", "time"] }
+wgpu = "25.0.0"

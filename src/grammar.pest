@@ -1,0 +1,12 @@
+GrammarFile = { SOI ~ Section* ~ EOI }
+Section = { ChromosomeSection | EvaluationSection }
+
+ChromosomeSection = { EndOfLineOrWhitespace* ~ ChromosomeStatement ~ NEWLINE }
+ChromosomeStatement = { "CHROMOSOME" }
+
+EvaluationSection = { EndOfLineOrWhitespace* ~ EvaluationStatement ~ NEWLINE }
+EvaluationStatement = { "EVALUATION" }
+
+EndOfLineOrWhitespace = { NEWLINE | WHITE_SPACE }
+
+Symbol = { WHITE_SPACE* ~ ( ASCII_ALPHANUMERIC | ASCII_DIGIT | "_" )+ }
