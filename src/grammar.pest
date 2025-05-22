@@ -1,16 +1,17 @@
+WHITESPACE = _{ WHITE_SPACE | NEWLINE }
+COMMENT = _{ "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
+
 GrammarFile = { SOI ~ Section* ~ EOI }
 Section = { ChromosomeSection | EvaluationSection }
 
-ChromosomeSection = { EndOfLineOrWhitespace* ~ ChromosomeStatement ~ WHITE_SPACE* ~ NEWLINE ~ ChromosomeExpr* }
+ChromosomeSection = {  ChromosomeStatement ~ ChromosomeExpr* }
 ChromosomeStatement = { "CHROMOSOME" }
-ChromosomeExpr = { WHITE_SPACE* ~ ChromosomeSymbolDecl ~ NEWLINE }
-ChromosomeSymbolDecl = { Symbol ~ WHITE_SPACE* ~ "=" ~ WHITE_SPACE* ~ ChromosomeType }
+ChromosomeExpr = {  ChromosomeSymbolDecl }
+ChromosomeSymbolDecl = { Symbol ~  "=" ~ ChromosomeType }
 ChromosomeType = { "u8" }
 
-EvaluationSection = { EndOfLineOrWhitespace* ~ EvaluationStatement ~ NEWLINE }
+EvaluationSection = { EvaluationStatement }
 EvaluationStatement = { "EVALUATION" }
 EvaluationExpr = { "b" }
 
-EndOfLineOrWhitespace = _{ NEWLINE | WHITE_SPACE }
-
-Symbol = { WHITE_SPACE* ~ ( ASCII_ALPHANUMERIC | ASCII_DIGIT | "_" )+ }
+Symbol = { ( ASCII_ALPHANUMERIC | ASCII_DIGIT | "_" )+ }

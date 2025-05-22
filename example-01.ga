@@ -1,5 +1,9 @@
 
+/* Intentional bad formatting */
     CHROMOSOME
+                a=u8
+                
+    b=u8
 
     EVALUATION
 
